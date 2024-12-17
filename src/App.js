@@ -10,6 +10,7 @@ function App() {
   return (
     <Router>
       <div className='App-header'>
+        <img src='/Nike-logo.jpg'></img>
         <nav>
           <Link to="/"> Home </Link> <br/>
           <Link to="/products"> Products </Link>
