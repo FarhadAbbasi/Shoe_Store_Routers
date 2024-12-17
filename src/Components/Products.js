@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 import data from "./Data";
 
 
@@ -19,14 +19,31 @@ export function ProductList() {
   return (
     <ul>
       {
-        Object.entries(data).map( ( [slug, {name, image} ] ) => (
+        Object.entries(data).map(([slug, { name, image }]) => (
           <li key={slug}>
-            <h3> {name} </h3>
-            <img src={image} alt= {name} ></img>
-
+            <Link to={`/products/${slug}`}>
+              <h3> {name} </h3>
+              <img src={image} alt={name} ></img>
+            </Link>
           </li>
         ))
       }
     </ul>
   )
+}
+
+export function Shoe() {
+  const {slug} = useParams();
+  const Shoe = data [slug] ;
+
+  if (!Shoe) {
+    return <h3> {slug} Not Found! </h3>
+  }
+
+  return (
+  <div>
+    <h3> Shoe {slug} ! </h3>
+    <img src={Shoe.image} alt={slug} ></img>
+  </div>
+  ) 
 }
